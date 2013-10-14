@@ -17,6 +17,17 @@ body {
 .left-side-bar {
   border-right: 1px solid #bbb;
 }
+.left-side-bar table {
+  display: block;
+}
+.left-side-bar table tbody {
+  display: block;
+  height: 335px;
+  overflow-y: auto;
+}
+.left-side-bar table tr {
+  cursor: pointer;
+}
 .left-side-bar .control-buttons {
   text-align: center;
 }
@@ -29,4 +40,10 @@ body {
   text-align: center;
   font-size: 30pt;
   text-shadow: 0px 2px 1px #F5F5F5;
+}
+.main-container dd {
+  margin-bottom: 10px;
+}
+.main-container dd[contenteditable="true"] {
+  background: #eee;
 }

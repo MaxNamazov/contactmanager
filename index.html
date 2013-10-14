@@ -1,28 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="directive" ng-controller="ContactManager">
 <head>
-    <title>Bootstrap 101 Template</title>
+    <title>Contact Manager {{editMode}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/my.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="js/jquery-2.0.3.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/logic.js"></script>
 </head>
-<body>
+<body >
  <div class="container wrapper">
      <div class="col-md-4 left-side-bar">
 
          <div class="form-group">
-             <label class="sr-only" for="exampleInputEmail2">Search</label>
-             <input type="search" class="form-control" id="exampleInputEmail2" placeholder="People search...">
+             <label class="sr-only" for="search">Search</label>
+             <input type="search" class="form-control" id="search" ng-model="search" placeholder="People search...">
          </div>
-         <select class="form-control">
-             <option>1</option>
-             <option>2</option>
-             <option>3</option>
-             <option>4</option>
-             <option>5</option>
+         <select class="form-control" ng-model="selectedGroup" ng-options="gr.id as gr.name for gr in groups">
+              <option value="">All</option>
+
          </select>
          <table class="table table-striped table-hover">
              <thead>
@@ -34,47 +32,48 @@
              </tr>
              </thead>
              <tbody>
-             <tr>
-                 <td>1</td>
-                 <td>Mark</td>
-                 <td>Otto</td>
-                 <td>@mdo</td>
-             </tr>
-             <tr>
-                 <td>2</td>
-                 <td>Jacob</td>
-                 <td>Thornton</td>
-                 <td>@fat</td>
-             </tr>
-             <tr>
-                 <td>3</td>
-                 <td>Larry</td>
-                 <td>the Bird</td>
-                 <td>@twitter</td>
-             </tr>
+                 <tr ng-repeat="contact in contacts | filter:search  | filter:selectedGroup | orderBy: 'firstName'" ng-click="selectContact(contact)" >
+                     <td><img ng-src="{{contact.imageUrl}}" height="25" width="25" /></td>
+                     <td >{{contact.firstName}}</td>
+                     <td>{{contact.lastName}}</td>
+                     <td>{{contact.phoneNumber}}</td>
+                 </tr>
              </tbody>
          </table>
          <p class="control-buttons">
-             <button type="button" class="btn btn-default">Add</button>
-             <button type="button" class="btn btn-danger">Remove</button>
+             <button type="button" class="btn btn-default" ng-click="addNewContact()">Add</button>
+             <button type="button" class="btn btn-danger" ng-disabled="selectedContact == null" ng-click="remove()">Remove</button>
          </p>
      </div><!--/.left-side-bar-->
-     <div class="col-md-8 main-container">
+     <div class="col-md-8 main-container" ng-show="selectedContact">
          <header class="clearfix">
-             <img class="img-thumbnail pull-left" src="img/default_pic.png" height="200" width="200" alt=""/>
-             <h2>Mark Otto</h2>
+             <img class="img-thumbnail pull-left" ng-src="{{selectedContact.imageUrl}}" height="200" width="200" alt=""/>
+             <h2>{{selectedContact.firstName + " " + selectedContact.lastName}}</h2>
          </header>
          <dl class="dl-horizontal info">
-             <dt>email</dt>
-             <dd>maxim@maxit.org.ua</dd>
+             <dt>First name</dt>
+             <dd contenteditable="{{editMode}}" ng-model="selectedContact.firstName"></dd>
+             <dt>Last Name</dt>
+             <dd contenteditable="{{editMode}}" ng-model="selectedContact.lastName"></dd>
+             <dt>Email</dt>
+             <dd contenteditable="{{editMode}}" ng-model="selectedContact.email"></dd>
              <dt>Phone</dt>
-             <dd>555 55 55</dd>
+             <dd contenteditable="{{editMode}}" ng-model="selectedContact.phoneNumber"></dd>
              <dt>Skype</dt>
-             <dd>max</dd>
+             <dd contenteditable="{{editMode}}" ng-model="selectedContact.skype"></dd>
              <dt>Adress</dt>
-             <dd>bla bla bla bla</dd>
-         </dl>
+             <dd contenteditable="{{editMode}}" ng-model="selectedContact.adress"></dd>
+             <dt>Note</dt>
+             <dd contenteditable="{{editMode}}" ng-model="selectedContact.note"></dd>
+             <dt>Group</dt>
+             <dd ng-show ="!editMode">{{selectedContact.group}}</dd>
+             <dd ng-show ="editMode">
+                 <select class="form-control" ng-model="selectedContact.group" ng-options="gr.id as gr.name for gr in groups">
+                 </select>
+             </dd>
 
+         </dl>
+         <button type="button" class="btn btn-success" id="editButton" ng-click="toggleEditMode()">{{editButtonText}}</button>
      </div>
  </div>
 

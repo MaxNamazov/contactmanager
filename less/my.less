@@ -17,7 +17,17 @@ body{
 }
 .left-side-bar{
   border-right: 1px solid #bbb;
-  ;
+  table{
+    display: block;
+    tbody{
+      display: block;
+      height: 335px;
+      overflow-y: auto;
+    }
+    tr{
+      cursor: pointer;
+    }
+  }
   .control-buttons{
     text-align: center;
   }
@@ -33,4 +43,11 @@ body{
       text-shadow: 0px 2px 1px #F5F5F5;
     }
   }
+  dd{
+    margin-bottom: 10px;
+    &[contenteditable="true"]{
+      background: #eee;
+    }
+  }
+
 }
