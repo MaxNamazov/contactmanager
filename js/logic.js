@@ -25,6 +25,9 @@ function ContactManager ($scope){
             lastName: 'Namazov',
             phoneNumber: '5555555',
             imageUrl: "img/max.jpg",
+            skype:"",
+            email:"",
+            adress:"",
             note: "Contact manager developer",
             group: "Family"
         },
@@ -33,6 +36,9 @@ function ContactManager ($scope){
             lastName: 'Klevtsova',
             phoneNumber: '7777777',
             imageUrl: "img/alina.jpg",
+            skype:"",
+            email:"",
+            adress:"",
             note: "Developer's gf",
             group: "Family"
         },
@@ -41,6 +47,9 @@ function ContactManager ($scope){
             lastName: 'Mazurenko',
             phoneNumber: '1111111',
             imageUrl: "img/mazurenko.jpg",
+            skype:"",
+            email:"",
+            adress:"",
             note: "Developer's friend. You should invite him to the js-course!",
             group: "Friends"
         },
@@ -49,6 +58,9 @@ function ContactManager ($scope){
             lastName: 'Gavronskaya',
             phoneNumber: '2222222',
             imageUrl: "img/gavronskaya.jpg",
+            skype:"",
+            email:"",
+            adress:"",
             note: "Developer's friend. She's angry at him",
             group: "Friends"
         },
@@ -57,6 +69,9 @@ function ContactManager ($scope){
             lastName: 'Gusev',
             phoneNumber: '9999999',
             imageUrl: "img/gusev.jpg",
+            skype:"",
+            email:"",
+            adress:"",
             note: "Developer's co-worker. Talented guy",
             group: "Co-workers"
         }
@@ -87,6 +102,9 @@ function ContactManager ($scope){
                 lastName:"" ,
                 phoneNumber:"",
                 imageUrl: "img/default_pic.png",
+                skype:"",
+                email:"",
+                adress:"",
                 note: ""
             };
         $scope.contacts.push(contact);
